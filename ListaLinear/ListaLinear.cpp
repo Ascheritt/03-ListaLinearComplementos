@@ -122,19 +122,20 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	int x = 0;
-	int ii = 0;
+	int numx = 0;
 	cout << "Digite o elemento que deseja excluir:\n";
-	if (nElementos == ii) {
-		cout << "Nao existem elementos para se excluir.";
+	if (nElementos == 0) {
+		cout << "Nao existem elementos para se excluir.\n";
 	}
 	else {
-		ii++;
-		cin >> x;
 
-		if (nElementos == ii) {
-			if (x == lista[0]) {
+		cin >> numx;
+		int retorno = posicaoElemento(numx);
+
+		if (nElementos == 1) {
+			if (retorno != -1) {
 				nElementos--;
+				cout << "Voce excluiu o ultimo elemento da lista, agora ela esta vazia.";
 			}
 			else {
 				cout << "O elemento nao esta na lista, portanto nao pode ser excluido.";
@@ -142,20 +143,15 @@ void excluirElemento()
 		}
 
 		else {
-			int z = 0;
-			int o = 0;
-			int ultimap = nElementos - 1;
-			while (z < nElementos) {
 
-				if (x == lista[z]) {
-					o++;
-					lista[z] = lista[ultimap];
-					nElementos--;
+			if (retorno != -1) {
+				for (int i = retorno; i < nElementos; i++) {
+					lista[i] = lista[i + 1];
 				}
-				z++;
+				nElementos--;
 			}
-
-			if (o == 0) {
+			
+			else {
 				cout << "O elemento nao esta na lista, portanto nao pode ser excluido. ";
 			}
 		}
@@ -188,3 +184,18 @@ int posicaoElemento(int busca)
 	}
 	return posicao;
 }
+
+
+
+
+/*int z = 0;
+			int o = 0;
+			int ultimap = nElementos - 1;
+			while (z < nElementos) {
+
+				if (numx == lista[z]) {
+					o++;
+					lista[z] = lista[ultimap];
+					nElementos--;
+				}
+				z++;*/
